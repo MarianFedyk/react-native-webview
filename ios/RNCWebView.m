@@ -842,7 +842,7 @@ static NSDictionary* customCertificatesForHost;
   if (_onLoadingStart) {
     // We have this check to filter out iframe requests and whatnot
     BOOL isTopFrame = [request.URL isEqual:request.mainDocumentURL];
-    if (isTopFrame) {
+    if (isTopFrame && !request.URL.fragment) {
       NSMutableDictionary<NSString *, id> *event = [self baseEvent];
       [event addEntriesFromDictionary: @{
         @"url": (request.URL).absoluteString,
